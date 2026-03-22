@@ -633,11 +633,21 @@ def prescreen_jd(jd_text):
     elif max_years >= 4:
         warnings.append(f"Requires {max_years}+ years — stretch for Praghya's 2.3 years, but promotion story may help.")
 
-    # 2. SENIOR TITLE CHECK
+    # 2. SENIOR TITLE CHECK — only scan the TITLE area, not the full JD body
+    # Extract title from first ~5 lines (where job title typically appears)
+    jd_lines = jd_text.strip().split('\n')
+    title_area = ' '.join(jd_lines[:5]).lower()
+
+    # Remove "reports to" context — these reference the MANAGER above, not the role itself
+    # e.g., "Reports to: Logistics Manager" should NOT trigger the manager check
+    title_area_cleaned = re.sub(r'reports?\s+to[:\s]+\w+[\w\s]*', '', title_area)
+    # Also remove "hiring manager", "logistics manager" in context of team descriptions
+    title_area_cleaned = re.sub(r'(?:hiring|line|account|project|logistics|warehouse|site|operations)\s+manager', '', title_area_cleaned)
+
     is_senior = False
     for pattern in SENIOR_TITLE_PATTERNS:
-        if re.search(pattern, jd_lower):
-            is_exception = any(re.search(exc, jd_lower) for exc in SENIOR_TITLE_EXCEPTIONS)
+        if re.search(pattern, title_area_cleaned):
+            is_exception = any(re.search(exc, title_area_cleaned) for exc in SENIOR_TITLE_EXCEPTIONS)
             if not is_exception:
                 is_senior = True
                 break
