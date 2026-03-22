@@ -33,12 +33,11 @@ except Exception:
     google_key = ""
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# MODELS — update these if you have access to newer models
-# Available (March 2026): gemini-2.5-flash, gemini-3-flash-preview,
-#   gemini-3.1-flash-lite-preview, gemini-2.5-flash-lite
+# MODELS — Latest as of March 2026
+# If preview models give errors, fall back to: gemini-2.5-flash
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-GENERATION_MODEL = "gemini-2.5-flash"
-SCORING_MODEL = "gemini-2.5-flash"
+GENERATION_MODEL = "gemini-3-flash-preview"
+SCORING_MODEL = "gemini-3.1-flash-lite-preview"
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # 1. CONFIGURATION
