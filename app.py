@@ -310,6 +310,27 @@ Examples of em-dash phrasing to AVOID and how to fix:
 - BAD:  "2 years at Reliance Retail — managing fulfilment for 250+ stores"
   GOOD: "2 years at Reliance Retail managing fulfilment for 250+ stores"
 
+═══ HARD RULE: NO PRONOUNS IN THE SUMMARY ═══
+
+The professional profile / summary section MUST be written in pronoun-free, implied-subject style. This is the dominant Irish/UK CV convention.
+
+DO NOT use any of these:
+- First-person: "I", "I am", "I bring", "my experience"
+- Third-person: "She", "She brings", "She is", "her experience", "Praghya is", "Praghya brings"
+- Possessives: "my MSc", "her promotion"
+
+INSTEAD: Drop the subject entirely. The reader knows it's about the candidate.
+
+Examples of bad and good summary openings:
+- BAD:  "I am an operations professional with over 2 years..."
+- BAD:  "She brings real operational depth from 2 years..."
+- BAD:  "Praghya was promoted from Graduate Trainee..."
+- GOOD: "Operations professional with over 2 years..."
+- GOOD: "Brings real operational depth from 2 years..."  (verb-led, no pronoun)
+- GOOD: "Promoted from Graduate Trainee to Senior Graduate within 6 months..."
+
+This applies to the summary ONLY. Cover letters use first-person ("I", "my") which is normal letter convention. Bullets use action verbs (Managed, Coordinated, Reduced) which are already pronoun-free.
+
 ═══ CANDIDATE FACTS YOU CANNOT INVENT ═══
 
 Praghya's REAL skills (safe to claim):
@@ -378,32 +399,46 @@ Once you've picked an archetype, follow the framing rules above when writing the
 
   "candidate_title": "<job-title-style line directly under the name. Mirror the JD's role title where possible. Examples: 'Supply Chain Coordinator', 'Logistics Coordinator', 'Operations Executive', 'Graduate Supply Chain', 'Business & Commercial Graduate'. Default to 'Supply Chain & Operations Professional' if unclear. Drop 'Senior'/'Lead'/'Principal' modifiers from the JD title.>",
 
-  "summary": "<EXACTLY 4-5 sentences. Natural flow, no choppy listing. NO em dashes. The framing depends on the archetype:
+  "summary": "<EXACTLY 4-5 sentences. Natural flow, no choppy listing. NO em dashes. NO pronouns (no 'I', no 'she', no 'Praghya', no 'her', no 'my'). Drop the subject entirely. The framing depends on the archetype:
 
   For archetypes A (coordinator), E (operations/inventory), F (pharma):
-    Sentence 1: Who she is (role identity matched to JD) + '2+ years' or 'over 2 years' of experience.
+    Sentence 1: Role identity matched to JD + '2+ years' or 'over 2 years' of experience. Pronoun-free.
+       GOOD: 'Supply chain professional with over 2 years of distribution centre experience...'
     Sentence 2: Reliance Retail fulfilment ops for 250+ stores, with one concrete metric (97% inventory accuracy OR 15% dispatch reduction OR 20% turnaround improvement). Pick the one most relevant to the JD.
+       GOOD: 'Managed fulfilment for 250+ stores at Reliance Retail, maintaining 97% inventory accuracy.'
     Sentence 3: Education: MSc Management (Strategy), NFQ Level 9 from DCU, plus BBA in Logistics & SCM (9.2/10 GPA, Silver Medallist).
+       GOOD: 'Holds an MSc in Management (Strategy), NFQ Level 9, from Dublin City University and a BBA in Logistics & SCM (9.2/10 GPA, Silver Medallist).'
     Sentence 4: Oracle Fusion Cloud SCM certification + which capabilities/tools from the JD she brings.
-    Sentence 5: Stamp 1G work authorisation note ('Eligible for full-time employment in Ireland under Stamp 1G, with no employment permit required.') OR a connection to the target company. Pick whichever lands best for this JD.
+       GOOD: 'Oracle Fusion Cloud SCM certified, with daily working knowledge of SAP for inventory and KPI monitoring.'
+    Sentence 5: Stamp 1G work authorisation note OR a connection to the target company. Pick whichever lands best for this JD.
+       GOOD: 'Eligible for full-time employment in Ireland under Stamp 1G, with no employment permit required.'
 
   For archetypes C (graduate SC programme) and D (graduate business programme):
-    Sentence 1: Recent graduate of the MSc in Management (Strategy), NFQ Level 9 from Dublin City University, plus BBA in Logistics & SCM (9.2/10 GPA, Silver Medallist, Top 2 of class).
-    Sentence 2: 'Brings real operational depth from 2+ years at Reliance Retail (Quick Supply Chain Division)...' Describe Reliance briefly with one concrete metric. Frame as a differentiator from typical graduate applicants.
-    Sentence 3: Promoted from Graduate Trainee to Senior Graduate within 6 months, demonstrating fast learning and consistent performance.
-    Sentence 4: Why this programme. Connect her ambitions to what the programme offers (rotation, breadth, leadership development). Mention the company by name.
-    Sentence 5: Stamp 1G eligibility ('Eligible for full-time employment in Ireland under Stamp 1G, with no employment permit required.'). Important for graduate programmes that often state 'continuous right to work required'.
+    Sentence 1: Recent MSc graduate framing. Pronoun-free.
+       GOOD: 'Recent MSc graduate of Management (Strategy), NFQ Level 9 from Dublin City University, with a BBA in Logistics & SCM (9.2/10 GPA, Silver Medallist, Top 2 of class).'
+    Sentence 2: Verb-led description of Reliance experience. Frame as a differentiator from typical graduate applicants.
+       GOOD: 'Brings real operational depth from over 2 years at Reliance Retail (Quick Supply Chain Division) managing fulfilment for 250+ stores.'
+       BAD:  'She brings real operational depth...'
+    Sentence 3: 6-month promotion as evidence of fast learning. Pronoun-free.
+       GOOD: 'Promoted from Graduate Trainee to Senior Graduate within 6 months, demonstrating fast learning and consistent performance.'
+       BAD:  'Praghya was promoted...'
+    Sentence 4: Why this programme. Connect ambitions to what the programme offers (rotation, breadth, leadership development). Mention the company by name. Verb-led, no pronoun.
+       GOOD: 'Drawn to the [Programme Name] for its three-rotation structure...'
+    Sentence 5: Stamp 1G eligibility. Important for graduate programmes that often state 'continuous right to work required'. Pronoun-free.
+       GOOD: 'Eligible for full-time employment in Ireland under Stamp 1G, with no employment permit required.'
 
   For archetype B (analyst data-heavy):
-    Sentence 1: Frame her as 'operational supply chain professional with strong analytical foundation from a 9.2/10 BBA in SCM and an MSc in Management (Strategy), NFQ Level 9 from DCU'. Lead with thinking ability, not data tools.
-    Sentence 2: Reliance metrics (97% inventory accuracy, 250+ stores).
-    Sentence 3: Acknowledge the analytical aspect honestly: 'Comfortable using Excel and SAP for daily KPI monitoring, with growing exposure to supply chain analytics through ongoing learning.'
-    Sentence 4: Oracle SCM cert + Stamp 1G note.
+    Sentence 1: Frame as 'Operational supply chain professional with strong analytical foundation from a 9.2/10 BBA in SCM and an MSc in Management (Strategy), NFQ Level 9 from DCU'. Lead with thinking ability, not data tools. Pronoun-free.
+    Sentence 2: Reliance metrics (97% inventory accuracy, 250+ stores). Verb-led, no pronoun.
+       GOOD: 'Managed fulfilment for 250+ stores at Reliance Retail, maintaining 97% inventory accuracy across ~5,000 SKUs.'
+    Sentence 3: Acknowledge the analytical aspect honestly: 'Comfortable using Excel and SAP for daily KPI monitoring, with growing exposure to supply chain analytics through ongoing learning.' Pronoun-free.
+    Sentence 4: Oracle SCM cert + Stamp 1G note. Pronoun-free.
+       GOOD: 'Oracle Fusion Cloud SCM certified. Eligible for full-time employment in Ireland under Stamp 1G, with no employment permit required.'
 
   For archetype G (unknown stretch):
-    Sentence 1: Operations and coordination professional + 2+ years.
-    Sentence 2: Briefest Reliance metric.
-    Sentence 3: Education + Oracle cert.
+    Sentence 1: 'Operations and coordination professional with over 2 years...' Pronoun-free.
+    Sentence 2: Briefest Reliance metric. Verb-led.
+    Sentence 3: Education + Oracle cert. Verb-led.
     Sentence 4: 'Open to applying transferable supply chain, coordination, and process-improvement skills to new sectors.' + Stamp 1G note.
 
   Avoid robotic phrasing across all archetypes. No 'leveraging', 'utilizing', 'spearheading', 'passionate about', 'committed to excellence', 'seamless', 'innovative'. Write like a confident human.>",
@@ -746,6 +781,57 @@ def strip_em_dashes(text: str) -> str:
     return cleaned
 
 
+def strip_summary_pronouns(text: str) -> str:
+    """Remove first-person/third-person pronouns from the start of summary
+    sentences. Resume summaries follow the Irish/UK convention of pronoun-free,
+    implied-subject prose ("Operations professional with...", not "I am an
+    operations professional..." or "She is an operations professional...").
+
+    This is the runtime safety net. The prompt tells the model to write
+    pronoun-free, but if a stray "She brings..." or "I bring..." or "Praghya
+    is..." slips through, we catch it before rendering.
+
+    Applied ONLY to the summary string. Cover letters use first-person
+    ("I", "my") which is normal letter convention and must NOT be stripped.
+    """
+    if not text:
+        return text
+
+    # Sentence-initial pronoun patterns to remove. Order matters: longer phrases first
+    # so 'She is a' doesn't get partially matched by 'She '.
+    # The patterns below match at the start of the string OR after a period+space,
+    # which is the start of a sentence.
+    patterns = [
+        # "She is a/an X" / "Praghya is a/an X" / "I am a/an X" -> "X"
+        (r"(^|(?<=\.\s))(I am|I'm|She is|She's|He is|He's|Praghya is|Praghya was)\s+(a|an)\s+", r"\1"),
+        # "She is X" / "Praghya is X" / "I am X" -> "X"
+        (r"(^|(?<=\.\s))(I am|I'm|She is|She's|He is|He's|Praghya is|Praghya was)\s+", r"\1"),
+        # "She brings/has/holds/manages X" -> "Brings/Has/Holds X" (verb stays, capitalised)
+        (r"(^|(?<=\.\s))(She|He)\s+(brings|has|holds|manages|managed|coordinates|coordinated|oversees|oversaw|maintains|maintained|trains|trained|reduced|improved|streamlined|verified|tracked|delivered|leads|led|supports|supported|drives|drove)\b",
+         lambda m: m.group(1) + m.group(3).capitalize()),
+        # "I bring X" / "I have X" / etc. -> "Bring X" / "Have X" / "Hold X"
+        (r"(^|(?<=\.\s))I\s+(bring|have|hold|manage|managed|coordinate|coordinated|oversee|oversaw|maintain|maintained|train|trained|reduce|reduced|improve|improved|streamline|streamlined|verify|verified|track|tracked|deliver|delivered|lead|led|support|supported|drive|drove)\b",
+         lambda m: m.group(1) + m.group(2).capitalize()),
+        # "Praghya brings/managed/etc X" (verb retained) -> "Brings/Managed X"
+        (r"(^|(?<=\.\s))Praghya\s+(managed|coordinated|oversaw|maintained|trained|reduced|improved|streamlined|verified|tracked|delivered|led|supported|drove|brings|has|holds|manages|coordinates|oversees|maintains|trains|reduces|improves|streamlines|verifies|tracks|delivers|leads|supports|drives)\b",
+         lambda m: m.group(1) + m.group(2).capitalize()),
+        # Possessives: "her experience" / "my MSc" -> "experience" / "MSc"
+        (r"\b(?:her|My|my)\s+(MSc|BBA|experience|background|certification)\b", r"\1"),
+    ]
+
+    cleaned = text
+    for pattern, replacement in patterns:
+        cleaned = re.sub(pattern, replacement, cleaned)
+
+    # First letter of result should be uppercase (the first sentence)
+    if cleaned and cleaned[0].islower():
+        cleaned = cleaned[0].upper() + cleaned[1:]
+
+    # Tidy: collapse double spaces that may have been introduced
+    cleaned = re.sub(r"\s{2,}", " ", cleaned)
+    return cleaned
+
+
 def scrub_banned_from_text(text: str) -> str:
     """Strip any banned skill mentions and em dashes from a free-text string
     (summary, bullets, cover letter). Two-stage scrub:
@@ -768,18 +854,90 @@ def scrub_banned_from_text(text: str) -> str:
     return cleaned.strip()
 
 
+def _normalize_skill(s: str) -> str:
+    """Normalise a skill for dedup comparison. Strips parens, punctuation,
+    and lowercases. So 'SAP (Inventory & SCM Modules)' and 'SAP Inventory
+    Modules' both contain the normalised core 'sap inventory'.
+    """
+    if not s:
+        return ""
+    # Lowercase, strip parens content keeping the words inside, normalise spaces
+    n = s.lower()
+    # Remove parens but keep contents: "SAP (Inventory & SCM Modules)" -> "sap inventory & scm modules"
+    n = re.sub(r"[()]", " ", n)
+    # Drop punctuation that doesn't carry meaning for matching
+    n = re.sub(r"[^a-z0-9& ]", " ", n)
+    # Collapse whitespace
+    n = re.sub(r"\s+", " ", n).strip()
+    return n
+
+
+def _is_duplicate_skill(candidate: str, existing_normalized: set) -> bool:
+    """Return True if `candidate` is a duplicate of a skill already in
+    `existing_normalized`. Handles three cases:
+    1. Exact match after normalisation: 'SAP' vs 'sap'
+    2. Candidate is a substring of an existing skill: 'SAP' vs 'sap inventory & scm modules'
+    3. An existing skill is a substring of candidate: 'sap' (existing) vs 'SAP Inventory Modules' (candidate)
+
+    The substring check uses word-boundary token containment to avoid false
+    positives like 'Management' matching 'Vendor Management' (those ARE distinct
+    skills; we use full-token containment, not substring containment).
+    """
+    cand_norm = _normalize_skill(candidate)
+    if not cand_norm:
+        return True  # empty / pure-punctuation skills are duplicates of nothing
+    if cand_norm in existing_normalized:
+        return True
+
+    cand_tokens = set(cand_norm.split())
+    for existing_norm in existing_normalized:
+        existing_tokens = set(existing_norm.split())
+        if not existing_tokens or not cand_tokens:
+            continue
+        # Case A: candidate is a "smaller version" of an existing multi-word skill
+        # ("sap" is a subset of {"sap", "inventory", "scm", "modules"})
+        if cand_tokens.issubset(existing_tokens):
+            return True
+        # Case B: existing is a "smaller version" of candidate
+        # (existing "sap" makes new "sap inventory modules" redundant)
+        if existing_tokens.issubset(cand_tokens):
+            return True
+    return False
+
+
 def merge_skills(additions: dict) -> dict:
-    """Combine BASE_SKILLS with model additions. Banned terms are dropped."""
+    """Combine BASE_SKILLS with model additions. Drops banned terms and
+    cross-category duplicates so the rendered skills section is clean.
+
+    Dedup rules:
+    - A model-added skill is rejected if it already exists in ANY category
+      (base or other addition) by the _is_duplicate_skill check
+    - A model-added skill is rejected if it's banned (Python, SQL, etc.)
+    - A model-added skill is rejected if it's a token-subset or token-superset
+      of any existing skill in any category
+    """
     final = {}
+    # Build the GLOBAL set of normalised skills across all base categories first
+    # so cross-category dedup works.
+    seen_normalized = set()
     for category, base_list in BASE_SKILLS.items():
-        # Start with base (always present)
-        merged = list(base_list)
-        added = additions.get(category, []) if isinstance(additions, dict) else []
-        if not isinstance(added, list):
-            added = []
-        # Append additions that are (a) not already present, (b) not banned
-        existing_lower = {s.lower() for s in merged}
-        for skill in added:
+        for skill in base_list:
+            seen_normalized.add(_normalize_skill(skill))
+
+    # Start each output category with its base skills (always preserved as-is)
+    for category, base_list in BASE_SKILLS.items():
+        final[category] = list(base_list)
+
+    # Now pass through model additions, deduping against the global set
+    if not isinstance(additions, dict):
+        additions = {}
+
+    for category, added_list in additions.items():
+        if category not in final:
+            continue  # ignore unknown categories
+        if not isinstance(added_list, list):
+            continue
+        for skill in added_list:
             if not isinstance(skill, str):
                 continue
             s = skill.strip()
@@ -787,11 +945,12 @@ def merge_skills(additions: dict) -> dict:
                 continue
             if is_banned(s):
                 continue
-            if s.lower() in existing_lower:
+            if _is_duplicate_skill(s, seen_normalized):
                 continue
-            merged.append(s)
-            existing_lower.add(s.lower())
-        final[category] = merged
+            # Accept the addition
+            final[category].append(s)
+            # Update global set so a subsequent category can't re-add it
+            seen_normalized.add(_normalize_skill(s))
     return final
 
 
@@ -842,6 +1001,7 @@ def merge_experience(model_bullets: list) -> list:
 def assemble_resume(model_output: dict) -> dict:
     """Combine model output + base facts into a fully-populated resume dict."""
     summary = scrub_banned_from_text(model_output.get("summary", "") or "")
+    summary = strip_summary_pronouns(summary)
     if not summary or len(summary.split()) < 20:
         # Fallback summary if model failed
         summary = (
