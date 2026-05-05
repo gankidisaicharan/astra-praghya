@@ -172,6 +172,70 @@ BASE_ADDITIONAL_INFO = [
 ]
 
 
+def build_base_resume_text() -> str:
+    """Compose Praghya's base resume as plain text from the constants above.
+    This is what pre-fills the 'Base Resume' box in the UI so she can see
+    and edit what's being sent to the model."""
+    lines = []
+    lines.append(CANDIDATE_NAME)
+    lines.append(CANDIDATE_TAGLINE)
+    lines.append(CANDIDATE_CONTACT)
+    lines.append("")
+
+    lines.append("Professional Profile")
+    lines.append(
+        "Operations and supply chain professional with over 2 years of experience "
+        "in warehouse management, inventory control, and logistics coordination "
+        "within large-scale retail environments. Held a Senior Graduate role at "
+        "Reliance Retail, one of India's largest retail conglomerates, overseeing "
+        "end-to-end fulfilment operations across 50+ stores. Holds an MSc in "
+        "Management (Strategy) from Dublin City University and a BBA in Logistics "
+        "& Supply Chain Management (9.2/10 GPA, Silver Medallist). Certified in "
+        "Oracle Fusion Cloud SCM. Seeking supply chain analyst, operations, and "
+        "logistics coordinator roles in the Irish market."
+    )
+    lines.append("")
+
+    lines.append("Key Skills / Tools & Technologies")
+    for cat, skill_list in BASE_SKILLS.items():
+        lines.append(f"- {cat}: {', '.join(skill_list)}")
+    lines.append("")
+
+    lines.append("Professional Experience")
+    for role in BASE_EXPERIENCE:
+        header = f"{role['role_title']} | {role['company']} | {role['location']} | {role['dates']}"
+        lines.append(header)
+        for r in role["responsibilities"]:
+            lines.append(f"- {r}")
+        if role["achievements"]:
+            lines.append("Achievements:")
+            for a in role["achievements"]:
+                lines.append(f"- {a}")
+        lines.append("")
+
+    lines.append("Education")
+    for edu in BASE_EDUCATION:
+        lines.append(edu["degree"])
+        lines.append(f"{edu['institution']} | {edu['dates']} | {edu['grade']}")
+        if edu.get("extra"):
+            lines.append(edu["extra"])
+        lines.append("")
+
+    lines.append("Certifications")
+    for c in BASE_CERTIFICATIONS:
+        lines.append(f"- {c}")
+    lines.append("")
+
+    lines.append("Additional Information")
+    for a in BASE_ADDITIONAL_INFO:
+        lines.append(f"- {a}")
+
+    return "\n".join(lines)
+
+
+PRAGHYA_BASE_RESUME = build_base_resume_text()
+
+
 # ═══════════════════════════════════════════════════════════════════
 # 3. SAFETY: BANNED SKILLS (Praghya does NOT have these)
 # Used as a final scrub on tailored output. We don't fail — we just strip.
@@ -415,15 +479,25 @@ class TailoredOutput(BaseModel):
 # 6. CALL GEMINI
 # ═══════════════════════════════════════════════════════════════════
 
-def call_gemini(api_key: str, jd_text: str) -> dict:
-    """Single API call. JSON mode. Returns parsed dict or {'error': ...}."""
+def call_gemini(api_key: str, jd_text: str, resume_text: str = "") -> dict:
+    """Single API call. JSON mode. Returns parsed dict or {'error': ...}.
+    resume_text is Praghya's base resume — passed through so the model
+    sees what she sees in the UI box and respects any edits she made there.
+    Falls back to the constants-derived default if not supplied."""
     if not api_key:
         return {"error": "Missing GOOGLE_API_KEY."}
     if not jd_text or not jd_text.strip():
         return {"error": "Job description is empty."}
 
+    if not resume_text or not resume_text.strip():
+        resume_text = PRAGHYA_BASE_RESUME
+
     client = genai.Client(api_key=api_key)
-    prompt = f"{ASTRA_PROMPT}\n\n═══ JOB DESCRIPTION ═══\n{jd_text}"
+    prompt = (
+        f"{ASTRA_PROMPT}\n\n"
+        f"═══ BASE RESUME ═══\n{resume_text}\n\n"
+        f"═══ JOB DESCRIPTION ═══\n{jd_text}"
+    )
 
     try:
         response = client.models.generate_content(
@@ -939,6 +1013,8 @@ if "tailored" not in st.session_state:
     st.session_state["tailored"] = None
 if "saved_jd" not in st.session_state:
     st.session_state["saved_jd"] = ""
+if "saved_base" not in st.session_state:
+    st.session_state["saved_base"] = PRAGHYA_BASE_RESUME
 if "cover_letter" not in st.session_state:
     st.session_state["cover_letter"] = None
 
@@ -963,6 +1039,7 @@ with st.sidebar:
     if st.button("🗑️ Reset", use_container_width=True):
         st.session_state["tailored"] = None
         st.session_state["saved_jd"] = ""
+        st.session_state["saved_base"] = PRAGHYA_BASE_RESUME
         st.session_state["cover_letter"] = None
         st.rerun()
 
@@ -978,20 +1055,44 @@ if not st.session_state["tailored"]:
     )
     st.divider()
 
-    jd = st.text_area("Job Description",
-                      value=st.session_state["saved_jd"],
-                      height=420,
-                      placeholder="Paste the full JD here…")
+    col_resume, col_jd = st.columns(2)
+
+    with col_resume:
+        st.subheader("📋 Base Resume")
+        st.caption("Pre-filled with Praghya's profile. Edit only if you need a one-off tweak for this application.")
+        base = st.text_area(
+            "Base Resume",
+            value=st.session_state["saved_base"],
+            height=420,
+            label_visibility="collapsed",
+        )
+        if st.button("↩️ Restore default base resume", use_container_width=True):
+            st.session_state["saved_base"] = PRAGHYA_BASE_RESUME
+            st.rerun()
+
+    with col_jd:
+        st.subheader("💼 Job Description")
+        st.caption("Paste the full JD here.")
+        jd = st.text_area(
+            "Job Description",
+            value=st.session_state["saved_jd"],
+            height=420,
+            label_visibility="collapsed",
+            placeholder="Paste the full JD here…",
+        )
 
     if st.button("✨ Generate Tailored Resume", type="primary", use_container_width=True):
         if not api_key:
             st.error("Need a Google API key to generate.")
         elif not jd.strip():
             st.warning("Please paste a job description.")
+        elif not base.strip():
+            st.warning("Base resume is empty. Click ‘Restore default base resume’ to bring it back.")
         else:
             st.session_state["saved_jd"] = jd
+            st.session_state["saved_base"] = base
             with st.spinner("Tailoring resume to JD…"):
-                model_out = call_gemini(api_key, jd)
+                model_out = call_gemini(api_key, jd, resume_text=base)
                 if "error" in model_out:
                     st.error(model_out["error"])
                 else:
