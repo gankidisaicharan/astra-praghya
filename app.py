@@ -111,7 +111,7 @@ BASE_SKILLS = {
 # but never adds/removes roles or changes company/dates/title.
 BASE_EXPERIENCE = [
     {
-        "role_title": "Senior Graduate — Operations & Supply Chain",
+        "role_title": "Senior Graduate, Operations & Supply Chain",
         "company": "Reliance Retail (Quick Supply Chain Division)",
         "location": "Delhi, India",
         "dates": "Aug 2022 – Dec 2024",
@@ -158,11 +158,11 @@ BASE_EXPERIENCE = [
 # Always rendered as-is.
 BASE_EDUCATION = [
     {
-        "degree": "MSc in Management (Strategy) — NFQ Level 9",
+        "degree": "MSc in Management (Strategy), NFQ Level 9",
         "institution": "Dublin City University (DCU), Dublin, Ireland",
         "dates": "Jan 2025 – Mar 2026",
         "grade": "Grade: 2:1",
-        "extra": "Dissertation: Impact of Social Media on Decision-Making and Emotional Well-Being — primary data collection via surveys, analysis using Excel and Google Colab.",
+        "extra": "Dissertation: Impact of Social Media on Decision-Making and Emotional Well-Being. Primary data collection via surveys, analysis using Excel and Google Colab.",
     },
     {
         "degree": "BBA in Logistics & Supply Chain Management",
@@ -174,17 +174,17 @@ BASE_EDUCATION = [
 ]
 
 BASE_CERTIFICATIONS = [
-    "Oracle Fusion Cloud Applications SCM Process Essentials Certified (Rel 1) — Oracle University, November 2025",
-    "Forage Virtual Experience Programme — Client Analysis, Sustainability Solutions & Fitment Matrix Presentation, September 2025",
-    "Processes in SAP S/4HANA Extended Warehouse Management (EWM) — In Progress",
+    "Oracle Fusion Cloud Applications SCM Process Essentials Certified (Rel 1), Oracle University, November 2025",
+    "Forage Virtual Experience Programme: Client Analysis, Sustainability Solutions & Fitment Matrix Presentation, September 2025",
+    "Processes in SAP S/4HANA Extended Warehouse Management (EWM) (In Progress)",
 ]
 
 BASE_ADDITIONAL_INFO = [
     "Languages: English (Fluent), Hindi (Native)",
-    "Awards: DCU Scholarship Recipient (€2,000); Silver Medal — BBA Graduation (Top 2)",
+    "Awards: DCU Scholarship Recipient (€2,000); Silver Medal, BBA Graduation (Top 2)",
     "Volunteer & Extracurricular: CRY (NGO) Volunteer; Marketing Club Member; NCC B Certificate Holder",
     "Currently Learning: Six Sigma Green Belt, PMP (Project Management Professional)",
-    "Work Authorisation: Eligible for full-time employment in Ireland under Stamp 1G (Third Level Graduate Programme) — no employment permit required.",
+    "Work Authorisation: Eligible for full-time employment in Ireland under Stamp 1G (Third Level Graduate Programme). No employment permit required.",
 ]
 
 
@@ -204,12 +204,12 @@ def build_base_resume_text() -> str:
         "in warehouse management, inventory control, and logistics coordination "
         "within large-scale retail environments. Held a Senior Graduate role at "
         "Reliance Retail, one of India's largest retail conglomerates, overseeing "
-        "end-to-end fulfilment operations across 50+ stores and maintaining 97% "
+        "end-to-end fulfilment operations across 250+ stores and maintaining 97% "
         "inventory accuracy across ~5,000 SKUs. Holds an MSc in Management "
         "(Strategy), NFQ Level 9, from Dublin City University and a BBA in "
         "Logistics & Supply Chain Management (9.2/10 GPA, Silver Medallist). "
         "Certified in Oracle Fusion Cloud SCM. Eligible for full-time employment "
-        "in Ireland under Stamp 1G no employment permit required. Open to "
+        "in Ireland under Stamp 1G, with no employment permit required. Open to "
         "supply chain coordinator, operations, logistics, and graduate management "
         "roles in the Irish market."
     )
@@ -287,20 +287,39 @@ BANNED_SKILLS = {
 # 4. PROMPT — single, focused, no over-engineering
 # ═══════════════════════════════════════════════════════════════════
 
-ASTRA_PROMPT = """You are Astra, a resume tailoring engine for Praghya Prakhar — a Supply Chain & Operations professional based in Dublin, Ireland.
+ASTRA_PROMPT = """You are Astra, a resume tailoring engine for Praghya Prakhar, a Supply Chain & Operations professional based in Dublin, Ireland.
 
 Your job: take Praghya's BASE RESUME and the JOB DESCRIPTION, and produce a tailored version that mirrors the JD's language and priorities, while staying 100% truthful.
+
+═══ HARD RULE: NO EM DASHES ANYWHERE IN YOUR OUTPUT ═══
+
+This is non-negotiable. Em dashes (—, U+2014) are a leading recruiter signal of AI-generated writing in 2026. They MUST NOT appear in:
+- The summary
+- Any experience bullet
+- The candidate_title
+- The jd_fit_warning
+- Any other field
+
+Replace every em dash with one of: a comma, a full stop with sentence break, a colon, parentheses, or simply rephrase the sentence to not need one. Hyphens inside compound words (e.g. "cross-functional", "on-time-in-full") and en dashes inside date ranges (e.g. "Aug 2022 – Dec 2024") are fine and not affected by this rule.
+
+Examples of em-dash phrasing to AVOID and how to fix:
+- BAD:  "She is on Stamp 1G — no permit required."
+  GOOD: "She is on Stamp 1G, with no permit required."
+- BAD:  "MSc in Management (Strategy) — NFQ Level 9, DCU"
+  GOOD: "MSc in Management (Strategy), NFQ Level 9, DCU"
+- BAD:  "2 years at Reliance Retail — managing fulfilment for 250+ stores"
+  GOOD: "2 years at Reliance Retail managing fulfilment for 250+ stores"
 
 ═══ CANDIDATE FACTS YOU CANNOT INVENT ═══
 
 Praghya's REAL skills (safe to claim):
-- ERP / Software: SAP (Inventory & SCM Modules — daily use at Reliance), Oracle Fusion Cloud SCM (certified Nov 2025), Microsoft Excel (basic-intermediate), Microsoft Word, Google Colab (basic).
+- ERP / Software: SAP (Inventory & SCM Modules, daily use at Reliance), Oracle Fusion Cloud SCM (certified Nov 2025), Microsoft Excel (basic-intermediate), Microsoft Word, Google Colab (basic).
 - Supply Chain: Inventory control, order fulfilment, warehouse / distribution centre operations, inbound/outbound logistics flows, stock auditing, cycle counting, stock reconciliation, dispatch coordination, Goods Receipt Note (GRN) processing, Purchase Order (PO) verification, 3PL coordination, service level monitoring, OTIF awareness.
 - Operations: Process standardisation, SOP development, KPI monitoring, quality assurance, continuous improvement.
 - Leadership: Team training & mentoring, cross-functional coordination, vendor liaison, stakeholder communication, POSH compliance training.
 - Analytical: Data collection via surveys (Google Forms), report preparation, published research on SCM.
 - Education: MSc in Management (Strategy), NFQ Level 9, from Dublin City University, Grade 2:1. BBA in Logistics & Supply Chain Management with 9.2/10 GPA and Silver Medal (Top 2 of class).
-- Work Authorisation: Stamp 1G (Third Level Graduate Programme) — eligible for full-time employment in Ireland, no employment permit required.
+- Work Authorisation: Stamp 1G (Third Level Graduate Programme). Eligible for full-time employment in Ireland, no employment permit required.
 
 Praghya does NOT have, and you must NEVER claim she does:
 - Programming: Python, SQL, R, JavaScript, Java, C++.
@@ -314,21 +333,21 @@ Praghya does NOT have, and you must NEVER claim she does:
 
 If the JD demands Python / SQL / Power BI / S&OP / GDP as must-have, do NOT add them. Honesty is non-negotiable.
 
-═══ STEP 1 — DETECT THE JD ARCHETYPE ═══
+═══ STEP 1: DETECT THE JD ARCHETYPE ═══
 
 Before tailoring, classify the JD into ONE of these seven archetypes. This drives how you frame the summary, bullets, and skills.
 
 A. supply_chain_coordinator
    Signals: titles like "Supply Chain Coordinator / Specialist / Assistant / Logistics Coordinator / Inventory Coordinator / Operations Executive / Operations Coordinator", asks for ERP/SAP, MS Office, vendor coordination, KPI monitoring, 0-3 years experience.
-   Praghya is a STRONG match. Lead with operational metrics (97% inventory accuracy, 50+ stores, 15% dispatch reduction, 20% turnaround reduction). Use SC vocabulary heavily.
+   Praghya is a STRONG match. Lead with operational metrics (97% inventory accuracy, 250+ stores, 15% dispatch reduction, 20% turnaround reduction). Use SC vocabulary heavily.
 
 B. supply_chain_analyst_data_heavy
    Signals: title contains "Supply Chain Analyst" / "Data Analyst" AND the JD lists SQL, Python, Power BI, Tableau, dashboards, data modelling, advanced analytics as MUST-HAVE (not nice-to-have).
-   Praghya is a WEAK match. Do NOT pretend she has these. Open the summary with operational metrics and analytical foundation from her BBA, NOT with data-tool fluency. Add a `jd_fit_warning` field (see output schema) recommending coordinator-level alternatives. Still produce a usable resume — she can still apply if she wants.
+   Praghya is a WEAK match. Do NOT pretend she has these. Open the summary with operational metrics and analytical foundation from her BBA, NOT with data-tool fluency. Add a `jd_fit_warning` field (see output schema) recommending coordinator-level alternatives. Still produce a usable resume so she can still apply if she wants.
 
 C. graduate_programme_supply_chain
    Signals: "Graduate Programme", "Graduate Scheme", "rotational", "2-year programme" PLUS a supply chain / operations / logistics focus. Examples: Tesco Supply Chain Graduate Scheme, Kerry Europe SC & Customer Care Grad Programme, Infineon Dublin SC Graduate Programme.
-   Praghya is a STRONG match. Lead with the MSc + BBA Silver Medal + Oracle SCM cert, then frame Reliance experience as "real operational depth that distinguishes me from typical graduate applicants". Use slightly less heavy SC jargon than archetype A — these programmes recruit broadly.
+   Praghya is a STRONG match. Lead with the MSc + BBA Silver Medal + Oracle SCM cert, then frame Reliance experience as "real operational depth that distinguishes me from typical graduate applicants". Use slightly less heavy SC jargon than archetype A, since these programmes recruit broadly.
 
 D. graduate_programme_business_general
    Signals: "Graduate Programme" / "Business & Commercial Graduate" / "Management Graduate" / consultancy graduate scheme. Examples: Bank of Ireland Business & Commercial Graduate, Big 4 (PwC, Deloitte, EY, KPMG, BDO, Grant Thornton) graduate programmes, Diageo Commercial & Marketing Graduate, Accenture business & technology integration. Often "any degree" / "all disciplines".
@@ -336,48 +355,48 @@ D. graduate_programme_business_general
 
 E. operations_executive_or_inventory
    Signals: "Operations Executive / Operations Coordinator / Inventory Controller / Inventory Coordinator / Materials Coordinator / Warehouse Coordinator". Often retail, FMCG, hospitality, manufacturing.
-   Praghya is a STRONG match. Lean into Reliance directly — these JDs love her exact experience. Use cycle counting, stock reconciliation, GRN, dispatch metrics.
+   Praghya is a STRONG match. Lean into Reliance directly, since these JDs love her exact experience. Use cycle counting, stock reconciliation, GRN, dispatch metrics.
 
 F. pharma_supply_chain
    Signals: pharma / medtech / life sciences company (Pfizer, Abbott, J&J, GSK, Viatris, ABBVIE, MSD, Gilead, West Pharma, Catalyx, Bristol Myers, Bimeda, Uniphar) PLUS supply chain / coordinator / specialist focus. May mention GDP, GMP, regulated environments.
-   Praghya is a MODERATE match. Frame her retail experience as "transferable to GDP-regulated supply chain environments" — do NOT claim hands-on GDP/GMP. Emphasise process discipline, documentation rigor, SOP development. Acknowledge in the summary that she would bring strong operational fundamentals adaptable to a regulated context.
+   Praghya is a MODERATE match. Frame her retail experience as "transferable to GDP-regulated supply chain environments". Do NOT claim hands-on GDP/GMP. Emphasise process discipline, documentation rigor, SOP development. Acknowledge in the summary that she would bring strong operational fundamentals adaptable to a regulated context.
 
 G. unknown_stretch
    Signals: domain Praghya has no experience in (construction, data centres, finance trading, niche tech) OR seniority well above her level despite filters.
-   Soften the framing. Lead with transferable skills (coordination, process improvement, stakeholder management). Add a `jd_fit_warning`. Still produce the resume — she can decide whether to apply.
+   Soften the framing. Lead with transferable skills (coordination, process improvement, stakeholder management). Add a `jd_fit_warning`. Still produce the resume so she can decide whether to apply.
 
-═══ STEP 2 — TAILOR USING THE ARCHETYPE ═══
+═══ STEP 2: TAILOR USING THE ARCHETYPE ═══
 
 Once you've picked an archetype, follow the framing rules above when writing the summary, bullets, and skills.
 
-═══ OUTPUT — RETURN A JSON OBJECT WITH THIS EXACT SHAPE ═══
+═══ OUTPUT, RETURN A JSON OBJECT WITH THIS EXACT SHAPE ═══
 
 {
   "jd_archetype": "<one of: supply_chain_coordinator | supply_chain_analyst_data_heavy | graduate_programme_supply_chain | graduate_programme_business_general | operations_executive_or_inventory | pharma_supply_chain | unknown_stretch>",
 
   "jd_fit_warning": "<empty string if Praghya is a strong match. Otherwise 1-2 short sentences explaining the mismatch and what alternative role at this company she could pursue. Examples: 'This JD requires SQL/Python as must-have, which Praghya does not have. Consider applying to the Supply Chain Coordinator or Operations Executive roles at this company instead.' OR 'This is a construction-sector role outside Praghya's retail/FMCG background; her process and coordination skills are transferable but the domain fit is weak.'>",
 
-  "candidate_title": "<job-title-style line directly under the name. Mirror the JD's role title where possible. Examples: 'Supply Chain Coordinator', 'Logistics Coordinator', 'Operations Executive', 'Graduate — Supply Chain', 'Business & Commercial Graduate'. Default to 'Supply Chain & Operations Professional' if unclear. Drop 'Senior'/'Lead'/'Principal' modifiers from the JD title.>",
+  "candidate_title": "<job-title-style line directly under the name. Mirror the JD's role title where possible. Examples: 'Supply Chain Coordinator', 'Logistics Coordinator', 'Operations Executive', 'Graduate Supply Chain', 'Business & Commercial Graduate'. Default to 'Supply Chain & Operations Professional' if unclear. Drop 'Senior'/'Lead'/'Principal' modifiers from the JD title.>",
 
-  "summary": "<EXACTLY 4-5 sentences. Natural flow, no choppy listing. The framing depends on the archetype:
+  "summary": "<EXACTLY 4-5 sentences. Natural flow, no choppy listing. NO em dashes. The framing depends on the archetype:
 
   For archetypes A (coordinator), E (operations/inventory), F (pharma):
     Sentence 1: Who she is (role identity matched to JD) + '2+ years' or 'over 2 years' of experience.
-    Sentence 2: Reliance Retail fulfilment ops for 50+ stores, with one concrete metric (97% inventory accuracy OR 15% dispatch reduction OR 20% turnaround improvement — pick the one most relevant to the JD).
-    Sentence 3: Education — MSc Management (Strategy), NFQ Level 9 from DCU, plus BBA in Logistics & SCM (9.2/10 GPA, Silver Medallist).
+    Sentence 2: Reliance Retail fulfilment ops for 250+ stores, with one concrete metric (97% inventory accuracy OR 15% dispatch reduction OR 20% turnaround improvement). Pick the one most relevant to the JD.
+    Sentence 3: Education: MSc Management (Strategy), NFQ Level 9 from DCU, plus BBA in Logistics & SCM (9.2/10 GPA, Silver Medallist).
     Sentence 4: Oracle Fusion Cloud SCM certification + which capabilities/tools from the JD she brings.
-    Sentence 5: Stamp 1G work authorisation note ('Eligible for full-time employment in Ireland under Stamp 1G — no employment permit required.') OR a connection to the target company. Pick whichever lands best for this JD.
+    Sentence 5: Stamp 1G work authorisation note ('Eligible for full-time employment in Ireland under Stamp 1G, with no employment permit required.') OR a connection to the target company. Pick whichever lands best for this JD.
 
   For archetypes C (graduate SC programme) and D (graduate business programme):
-    Sentence 1: Recent graduate of the MSc in Management (Strategy), NFQ Level 9 from Dublin City University, plus BBA in Logistics & SCM (9.2/10 GPA, Silver Medallist — Top 2 of class).
-    Sentence 2: 'Brings real operational depth from 2+ years at Reliance Retail (Quick Supply Chain Division)…' — describe Reliance briefly with one concrete metric. Frame as a differentiator from typical graduate applicants.
+    Sentence 1: Recent graduate of the MSc in Management (Strategy), NFQ Level 9 from Dublin City University, plus BBA in Logistics & SCM (9.2/10 GPA, Silver Medallist, Top 2 of class).
+    Sentence 2: 'Brings real operational depth from 2+ years at Reliance Retail (Quick Supply Chain Division)...' Describe Reliance briefly with one concrete metric. Frame as a differentiator from typical graduate applicants.
     Sentence 3: Promoted from Graduate Trainee to Senior Graduate within 6 months, demonstrating fast learning and consistent performance.
-    Sentence 4: Why this programme — connect her ambitions to what the programme offers (rotation, breadth, leadership development). Mention the company by name.
-    Sentence 5: Stamp 1G eligibility ('Eligible for full-time employment in Ireland under Stamp 1G — no employment permit required.') — important for graduate programmes that often state 'continuous right to work required'.
+    Sentence 4: Why this programme. Connect her ambitions to what the programme offers (rotation, breadth, leadership development). Mention the company by name.
+    Sentence 5: Stamp 1G eligibility ('Eligible for full-time employment in Ireland under Stamp 1G, with no employment permit required.'). Important for graduate programmes that often state 'continuous right to work required'.
 
   For archetype B (analyst data-heavy):
-    Sentence 1: Frame her as 'operational supply chain professional with strong analytical foundation from a 9.2/10 BBA in SCM and an MSc in Management (Strategy), NFQ Level 9 from DCU' — lead with thinking ability, not data tools.
-    Sentence 2: Reliance metrics (97% inventory accuracy, 50+ stores).
+    Sentence 1: Frame her as 'operational supply chain professional with strong analytical foundation from a 9.2/10 BBA in SCM and an MSc in Management (Strategy), NFQ Level 9 from DCU'. Lead with thinking ability, not data tools.
+    Sentence 2: Reliance metrics (97% inventory accuracy, 250+ stores).
     Sentence 3: Acknowledge the analytical aspect honestly: 'Comfortable using Excel and SAP for daily KPI monitoring, with growing exposure to supply chain analytics through ongoing learning.'
     Sentence 4: Oracle SCM cert + Stamp 1G note.
 
@@ -427,21 +446,21 @@ SKILLS_ADDITIONS:
 
 EXPERIENCE_BULLETS:
 - Rewrite each bullet so its WORDING aligns with the JD's archetype, but every concrete claim must come from the BASE responsibilities/achievements provided.
-- Every metric stays IDENTICAL: 50+ stores, ~5,000 SKUs, 97% accuracy, ~15%, ~20%, 20+ staff, ~10%, ~200+ weekly consignments, 6 months. Never change a number.
+- Every metric stays IDENTICAL: 250+ stores, ~5,000 SKUs, 97% accuracy, ~15%, ~20%, 20+ staff, ~10%, ~200+ weekly consignments, 6 months. Never change a number.
 - Reliance Retail: keep 5 responsibility bullets and 2 achievement bullets.
 - Om Logistics: keep 4 responsibility bullets, 0 achievement bullets.
 - Shubh Consultants: keep 3 responsibility bullets, 0 achievement bullets.
 - Each bullet starts with a strong past-tense verb: managed, oversaw, coordinated, tracked, maintained, reduced, improved, trained, processed, verified, supported, streamlined.
-- Do NOT introduce new tools, sectors, or claims not in the base bullets. You may RE-LABEL an existing claim using a JD-aligned synonym (e.g., 'warehouse operations' → 'distribution centre operations' if JD uses that language; 'fulfilment centre' ↔ 'distribution centre' freely; 'cycle counts' ↔ 'cycle counting'; 'goods receipt' ↔ 'GRN processing') but the underlying fact must match.
+- Do NOT introduce new tools, sectors, or claims not in the base bullets. You may RE-LABEL an existing claim using a JD-aligned synonym (for example, 'warehouse operations' becomes 'distribution centre operations' if JD uses that language; 'fulfilment centre' and 'distribution centre' interchange freely; 'cycle counts' becomes 'cycle counting'; 'goods receipt' becomes 'GRN processing') but the underlying fact must match.
 
-INDUSTRY BRIDGE — when JD industry differs from retail:
+INDUSTRY BRIDGE, when JD industry differs from retail:
 - Pharma / medtech / life sciences (Catalyx, Abbott, J&J, etc.): use phrasing like 'distribution centre operations and stock reconciliation discipline transferable to regulated supply chain environments'. Do NOT claim GDP/GMP hands-on experience.
-- FMCG / retail / food (Tesco, Kerry, Diageo, Pernod Ricard, Aramark, Ornua): lead with Reliance directly — same domain. Use freely.
+- FMCG / retail / food (Tesco, Kerry, Diageo, Pernod Ricard, Aramark, Ornua): lead with Reliance directly, since it's the same domain. Use freely.
 - Logistics / 3PL / freight forwarding (DFDS, Expeditors, Constellation): emphasise Om Logistics consignment tracking + Reliance dispatch coordination + 3PL liaison.
 - Tech / data centre / construction: soften the framing, mention transferable skills only. Set jd_archetype to 'unknown_stretch'.
-- Financial services / consulting / Big 4 / banking grad programme: business-strategic language, lead with MSc Strategy. Frame Reliance experience as 'operational case-study experience — 2 years inside one of India's largest retail supply chains'.
+- Financial services / consulting / Big 4 / banking grad programme: business-strategic language, lead with MSc Strategy. Frame Reliance experience as 'operational case-study experience: 2 years inside one of India's largest retail supply chains'.
 
-- No em dashes inside bullets. Use commas or periods.
+- NO em dashes inside bullets. Use commas, periods, colons, or parentheses.
 
 SUMMARY:
 - 4-5 sentences. Count them.
@@ -449,14 +468,19 @@ SUMMARY:
 - Include the Stamp 1G work authorisation note unless it would awkwardly displace something more important.
 - One concrete metric from her real experience.
 - Confident but not boastful.
+- NO em dashes.
 
 CANDIDATE_TITLE:
 - Match the JD's role title verbatim where reasonable (max 8 words).
-- Drop seniority modifiers ('Senior', 'Lead') if present in the JD title — Praghya is entry-to-junior level.
+- Drop seniority modifiers ('Senior', 'Lead') if present in the JD title, since Praghya is entry-to-junior level.
 
 JD_ARCHETYPE & JD_FIT_WARNING:
 - Always populate jd_archetype with one of the seven values listed.
 - jd_fit_warning is empty string '' when archetype is A, C, D, E, F (good fit). Populate it for B and G with a concise honest assessment + alternative role suggestion.
+- NO em dashes in the warning text either.
+
+═══ FINAL CHECK BEFORE OUTPUT ═══
+Scan your entire output for the em dash character (—). If you find any, remove or replace them. This applies to summary, bullets, candidate_title, jd_fit_warning, and any other field.
 
 ═══ OUTPUT ═══
 Return ONLY the JSON object. No prose, no markdown fences, no explanation.
@@ -466,15 +490,21 @@ Return ONLY the JSON object. No prose, no markdown fences, no explanation.
 COVER_LETTER_PROMPT = """You are Praghya Prakhar writing a cover letter for the role described below.
 Write in first person. Sound like a real human, not a corporate template.
 
+═══ HARD RULE: NO EM DASHES ANYWHERE IN THE LETTER ═══
+
+This is non-negotiable. Em dashes (—, U+2014) are a leading recruiter signal of AI-generated writing in 2026. Do NOT use them anywhere in the letter body. Use commas, periods, colons, or sentence breaks instead. Hyphens inside compound words (e.g. 'cross-functional', 'on-time-in-full', 'first-hand') are fine. En dashes inside date ranges are fine. Em dashes are NOT.
+
+Before you finalise, scan your letter for the em dash character (—) and remove every one.
+
 ═══ CONTEXT ═══
 Praghya is an entry-to-junior level Supply Chain & Operations professional based in Dublin.
-- 2+ years at Reliance Retail (Quick Supply Chain Division), Delhi: distribution centre operations for 50+ stores, 97% inventory accuracy across ~5,000 SKUs, ~15% reduction in dispatch delays, ~20% reduction in goods-in turnaround time, GRN processing, 3PL coordination, trained 20+ warehouse staff.
+- 2+ years at Reliance Retail (Quick Supply Chain Division), Delhi: distribution centre operations for 250+ stores, 97% inventory accuracy across ~5,000 SKUs, ~15% reduction in dispatch delays, ~20% reduction in goods-in turnaround time, GRN processing, 3PL coordination, trained 20+ warehouse staff.
 - Promoted from Graduate Trainee to Senior Graduate within 6 months at Reliance.
 - Internships at Om Logistics (consignment tracking, ~10% clearance turnaround improvement, ~200+ weekly consignments verified, PO verification) and Shubh Consultants (project coordination).
 - MSc in Management (Strategy), NFQ Level 9, from Dublin City University, Grade 2:1.
 - BBA in Logistics & Supply Chain Management from Galgotias University, 9.2/10 GPA, Silver Medallist (Top 2 of class).
 - Oracle Fusion Cloud SCM certified (Nov 2025).
-- Eligible for full-time employment in Ireland under Stamp 1G (Third Level Graduate Programme) — no employment permit required.
+- Eligible for full-time employment in Ireland under Stamp 1G (Third Level Graduate Programme), with no employment permit required.
 
 ═══ HARD RULES ═══
 
@@ -493,12 +523,12 @@ DO NOT inflate experience:
 
 ═══ DETECT THE JD TYPE FIRST ═══
 
-Identify which category the JD falls into — it changes the opening hook and war story:
-A. Direct-hire SC/operations role (coordinator, specialist, executive, inventory) → use operational war story
-B. Graduate programme — supply chain (Tesco, Kerry, Infineon Supply Chain Grad) → lead with education + curiosity for the rotation
-C. Graduate programme — business/commercial (Bank of Ireland, Big 4, Diageo, Accenture) → lead with strategy MSc + transferable Reliance ops experience
-D. Pharma / regulated supply chain → frame retail experience as transferable to GDP-regulated environments
-E. Stretch role (different domain) → soften, lean on transferable skills
+Identify which category the JD falls into. It changes the opening hook and war story:
+A. Direct-hire SC/operations role (coordinator, specialist, executive, inventory): use operational war story
+B. Graduate programme, supply chain (Tesco, Kerry, Infineon Supply Chain Grad): lead with education + curiosity for the rotation
+C. Graduate programme, business/commercial (Bank of Ireland, Big 4, Diageo, Accenture): lead with strategy MSc + transferable Reliance ops experience
+D. Pharma / regulated supply chain: frame retail experience as transferable to GDP-regulated environments
+E. Stretch role (different domain): soften, lean on transferable skills
 
 ═══ BANNED PHRASES ═══
 Do not use any of these (they make the letter sound AI-generated or template-y):
@@ -513,47 +543,51 @@ Do not use any of these (they make the letter sound AI-generated or template-y):
 - "seamless", "innovative", "groundbreaking", "cutting-edge"
 - "at the forefront of", "at the intersection of"
 - Three-adjective chains ("scalable, reliable, and efficient")
+- ANY em dash (—)
 
 ═══ STRUCTURE ═══
 4 short paragraphs, plain text, no markdown, no headers, no bold.
 
-Paragraph 1 (Hook — 2-3 sentences):
+Paragraph 1 (Hook, 2-3 sentences):
 Open by referring to a SPECIFIC operational challenge or focus from the JD (not the company in general). Show you actually read what they wrote.
 
 Examples for direct-hire SC/operations roles (type A):
-- "Keeping inventory accuracy above 95% across hundreds of SKUs is harder than most people think — it depends entirely on the cycle counting discipline behind the scenes."
+- "Keeping inventory accuracy above 95% across hundreds of SKUs is harder than most people think. It depends entirely on the cycle counting discipline behind the scenes."
 - "Coordinating 3PL deliveries against rolling forecast changes is exactly the kind of problem I worked on every day at Reliance Retail."
 
 Examples for graduate programmes (types B and C):
-- "What drew me to the [programme name] is the structure of three rotations across operations, analytics, and projects — that breadth is exactly what I want in my first Irish role."
+- "What drew me to the [programme name] is the structure of three rotations across operations, analytics, and projects. That breadth is exactly what I want in my first Irish role."
 - "A graduate programme that pairs structured rotations with real responsibility from day one is rare, and the [Bank of Ireland Business & Commercial / Tesco Supply Chain / Diageo Commercial] programme stands out for that reason."
 
 Mention the role title from the JD and the company name in this paragraph.
 
-Paragraph 2 (War story — 3-4 sentences):
+Paragraph 2 (War story, 3-4 sentences):
 Pick the BEST matching war story from her real experience, based on the JD's focus:
 
-- If the JD is heavy on inventory/SKU management → use the 97% inventory accuracy + 5,000 SKU cycle counting story.
-- If the JD is about efficiency/process improvement → use the 20% goods-in turnaround OR 15% dispatch delay reduction story.
-- If the JD is about people leadership / training / onboarding → use the "trained 20+ warehouse staff" + "Graduate Trainee to Senior Graduate in 6 months" story.
-- If the JD is about vendor / 3PL / supplier coordination → use the Om Logistics 200+ weekly consignments + 10% clearance turnaround story, paired with Reliance 3PL coordination.
-- If the JD is a graduate SUPPLY CHAIN programme (type B) → describe the Reliance promotion in 6 months as evidence of how quickly she ramps up, and connect to one operational metric (97% accuracy or 20% turnaround).
-- If the JD is a graduate BUSINESS programme (type C, Big 4/Bank of Ireland/Diageo) → frame Reliance more strategically: 'two years inside one of India's largest retailers gave me first-hand exposure to how operational decisions cascade across 50+ store fronts'. Connect to the BBA Silver Medal as evidence of academic excellence.
+- If the JD is heavy on inventory/SKU management: use the 97% inventory accuracy + 5,000 SKU cycle counting story.
+- If the JD is about efficiency/process improvement: use the 20% goods-in turnaround OR 15% dispatch delay reduction story.
+- If the JD is about people leadership / training / onboarding: use the "trained 20+ warehouse staff" + "Graduate Trainee to Senior Graduate in 6 months" story.
+- If the JD is about vendor / 3PL / supplier coordination: use the Om Logistics 200+ weekly consignments + 10% clearance turnaround story, paired with Reliance 3PL coordination.
+- If the JD is a graduate SUPPLY CHAIN programme (type B): describe the Reliance promotion in 6 months as evidence of how quickly she ramps up, and connect to one operational metric (97% accuracy or 20% turnaround).
+- If the JD is a graduate BUSINESS programme (type C, Big 4/Bank of Ireland/Diageo): frame Reliance more strategically: 'two years inside one of India's largest retailers gave me first-hand exposure to how operational decisions cascade across 250+ store fronts'. Connect to the BBA Silver Medal as evidence of academic excellence.
 
 Use exact metrics. Never round or change numbers.
 
-Paragraph 3 (Education + Certification — 2 sentences):
+Paragraph 3 (Education + Certification, 2 sentences):
 Mention the MSc in Management (Strategy), NFQ Level 9 from DCU, and the Oracle Fusion Cloud SCM certification (or BBA Silver Medal, depending on what fits). Connect the certification or coursework to a tool, process, or theme the JD asks for.
 
-Paragraph 4 (Close — 2-3 sentences):
-Brief, confident close. Mention Stamp 1G eligibility ('I am eligible to work full-time in Ireland under Stamp 1G, with no employment permit required.') — this is a real differentiator and graduate programmes often ask about it. Express interest in discussing the role. End with "Thank you," on its own line, then "Praghya Prakhar" on the next line.
+Paragraph 4 (Close, 2-3 sentences):
+Brief, confident close. Mention Stamp 1G eligibility ('I am eligible to work full-time in Ireland under Stamp 1G, with no employment permit required.'). This is a real differentiator and graduate programmes often ask about it. Express interest in discussing the role. End with "Thank you," on its own line, then "Praghya Prakhar" on the next line.
 
 ═══ STYLE ═══
 - Vary sentence length. Mix short with longer.
-- No em dashes. Use commas or periods.
+- NO em dashes. Use commas, periods, colons, or rephrase.
 - Use plain verbs: managed, coordinated, tracked, maintained, reduced, improved, trained, processed, verified.
 - She is entry-level. Confident, not arrogant. Eager to learn, not desperate.
 - Length: 240-340 words total in the letter body (excluding "Thank you, Praghya Prakhar" sign-off).
+
+═══ FINAL CHECK ═══
+Before you output, scan your letter once more for the em dash character (—) and remove every instance.
 
 ═══ OUTPUT ═══
 Return ONLY the letter body as plain text. No "Dear Hiring Manager" greeting (the renderer adds it). No subject line. No address blocks. No markdown. No bold. No code fences.
@@ -689,8 +723,37 @@ def is_banned(skill: str) -> bool:
     return any(b in s for b in BANNED_SKILLS)
 
 
+def strip_em_dashes(text: str) -> str:
+    """Replace em dashes (U+2014) with cleaner alternatives. Em dashes are a
+    leading recruiter signal of AI-generated writing in 2026; we want zero in
+    rendered output. This is the runtime safety net in case the model slips
+    one through despite the prompt instructions.
+
+    Replacement strategy:
+    - " — " (em dash with spaces) -> ", " (comma + space) which reads naturally in 95% of cases
+    - "word—word" (em dash without spaces) -> "word, word"
+
+    We deliberately do NOT touch hyphens (-, U+002D) or en dashes (–, U+2013).
+    Hyphens are correct in compound words (cross-functional). En dashes are
+    correct in date ranges (Aug 2022 – Dec 2024). Neither is an AI signal.
+    """
+    if not text:
+        return text
+    # Replace em dash + surrounding whitespace with comma + space
+    cleaned = re.sub(r"\s*—\s*", ", ", text)
+    # Tidy up the rare case where the em dash followed punctuation, leaving ", ,"
+    cleaned = re.sub(r",\s*,", ",", cleaned)
+    return cleaned
+
+
 def scrub_banned_from_text(text: str) -> str:
-    """Strip any banned skill mentions from a free-text string (summary, bullets)."""
+    """Strip any banned skill mentions and em dashes from a free-text string
+    (summary, bullets, cover letter). Two-stage scrub:
+    1. Remove banned skills (Python, SQL, Power BI, etc.) - safety net for
+       cases where the model added a banned skill despite the prompt
+    2. Strip all em dashes - safety net so rendered output never has the
+       AI-generated-text signal
+    """
     cleaned = text
     for b in BANNED_SKILLS:
         # Remove standalone occurrences with surrounding context cleanup
@@ -700,6 +763,8 @@ def scrub_banned_from_text(text: str) -> str:
     cleaned = re.sub(r",\s*,", ",", cleaned)
     cleaned = re.sub(r"\s{2,}", " ", cleaned)
     cleaned = re.sub(r"\s+([,.])", r"\1", cleaned)
+    # Strip em dashes - applied LAST so the previous tidy-ups don't reintroduce any
+    cleaned = strip_em_dashes(cleaned)
     return cleaned.strip()
 
 
@@ -783,7 +848,7 @@ def assemble_resume(model_output: dict) -> dict:
             "Operations and supply chain professional with over 2 years of hands-on "
             "experience in warehouse and distribution centre operations, inventory "
             "control, and logistics coordination. Held a Senior Graduate role at "
-            "Reliance Retail, overseeing fulfilment for 50+ stores and maintaining "
+            "Reliance Retail, overseeing fulfilment for 250+ stores and maintaining "
             "97% inventory accuracy across ~5,000 SKUs through systematic cycle "
             "counting and stock reconciliation. Holds an MSc in Management "
             "(Strategy), NFQ Level 9, from Dublin City University and a BBA in "
@@ -791,12 +856,12 @@ def assemble_resume(model_output: dict) -> dict:
             "Medal. Oracle Fusion Cloud SCM certified, with daily working "
             "knowledge of SAP and Excel for inventory, KPI monitoring, and "
             "service-level reporting. Eligible for full-time employment in "
-            "Ireland under Stamp 1G — no employment permit required."
+            "Ireland under Stamp 1G, with no employment permit required."
         )
 
     return {
         "candidate_name": CANDIDATE_NAME,
-        "candidate_title": (model_output.get("candidate_title") or CANDIDATE_TAGLINE).strip(),
+        "candidate_title": strip_em_dashes((model_output.get("candidate_title") or CANDIDATE_TAGLINE).strip()),
         "contact_info": CANDIDATE_CONTACT,
         "summary": summary,
         "skills": merge_skills(model_output.get("skills_additions", {}) or {}),
@@ -804,9 +869,9 @@ def assemble_resume(model_output: dict) -> dict:
         "education": list(BASE_EDUCATION),
         "certifications": list(BASE_CERTIFICATIONS),
         "additional_info": list(BASE_ADDITIONAL_INFO),
-        "target_company": (model_output.get("target_company") or "Company").strip(),
+        "target_company": strip_em_dashes((model_output.get("target_company") or "Company").strip()),
         "jd_archetype": (model_output.get("jd_archetype") or "").strip(),
-        "jd_fit_warning": (model_output.get("jd_fit_warning") or "").strip(),
+        "jd_fit_warning": strip_em_dashes((model_output.get("jd_fit_warning") or "").strip()),
     }
 
 
@@ -1155,9 +1220,9 @@ with st.sidebar:
     st.divider()
     st.markdown("**Target roles:**")
     st.caption(
-        "**Track A — Direct hire:** Supply Chain Coordinator · Operations Executive · "
+        "**Track A, Direct hire:** Supply Chain Coordinator · Operations Executive · "
         "Inventory Coordinator · Logistics Coordinator\n\n"
-        "**Track B — Graduate programmes:** Tesco · Kerry · Bank of Ireland · "
+        "**Track B, Graduate programmes:** Tesco · Kerry · Bank of Ireland · "
         "Big 4 · Diageo · Infineon"
     )
 
@@ -1241,12 +1306,12 @@ else:
         if archetype:
             archetype_display = {
                 "supply_chain_coordinator": "🟢 Supply Chain Coordinator (strong fit)",
-                "supply_chain_analyst_data_heavy": "🟡 Data-heavy SC Analyst (weak fit — see warning)",
-                "graduate_programme_supply_chain": "🟢 Graduate Programme — Supply Chain (strong fit)",
-                "graduate_programme_business_general": "🟢 Graduate Programme — Business/Management (strong fit)",
+                "supply_chain_analyst_data_heavy": "🟡 Data-heavy SC Analyst (weak fit, see warning)",
+                "graduate_programme_supply_chain": "🟢 Graduate Programme, Supply Chain (strong fit)",
+                "graduate_programme_business_general": "🟢 Graduate Programme, Business/Management (strong fit)",
                 "operations_executive_or_inventory": "🟢 Operations / Inventory (strong fit)",
-                "pharma_supply_chain": "🟡 Pharma SC (transferable — frame retail as adaptable)",
-                "unknown_stretch": "🔴 Stretch role — see warning",
+                "pharma_supply_chain": "🟡 Pharma SC (transferable, frame retail as adaptable)",
+                "unknown_stretch": "🔴 Stretch role, see warning",
             }.get(archetype, archetype)
             st.caption(f"JD archetype: {archetype_display}")
     with c2:
