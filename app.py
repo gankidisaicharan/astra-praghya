@@ -116,7 +116,7 @@ BASE_EXPERIENCE = [
         "location": "Delhi, India",
         "dates": "Aug 2022 – Dec 2024",
         "responsibilities": [
-            "Managed daily distribution centre operations including inbound receipts, outbound dispatch, and stock reconciliation for a fulfilment hub servicing 50+ retail stores and e-commerce orders.",
+            "Managed daily distribution centre operations including inbound receipts, outbound dispatch, and stock reconciliation for a fulfilment hub servicing 250+ retail stores and e-commerce orders.",
             "Oversaw inventory accuracy across ~5,000 SKUs through systematic cycle counting and stock audits, maintaining accuracy levels above 97%.",
             "Coordinated cross-functionally with procurement, 3PL logistics partners, and store operations teams to reduce order dispatch delays by ~15%, lifting on-time-in-full performance against service-level targets.",
             "Streamlined inbound shipment processing and Goods Receipt Note (GRN) workflows, cutting average goods-in turnaround time by ~20% through improved staging and documentation procedures.",
@@ -209,7 +209,7 @@ def build_base_resume_text() -> str:
         "(Strategy), NFQ Level 9, from Dublin City University and a BBA in "
         "Logistics & Supply Chain Management (9.2/10 GPA, Silver Medallist). "
         "Certified in Oracle Fusion Cloud SCM. Eligible for full-time employment "
-        "in Ireland under Stamp 1G — no employment permit required. Open to "
+        "in Ireland under Stamp 1G no employment permit required. Open to "
         "supply chain coordinator, operations, logistics, and graduate management "
         "roles in the Irish market."
     )
